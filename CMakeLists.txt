@@ -786,7 +786,7 @@ CHECK_C_SOURCE_COMPILES("#include <stdint.h>
 		return 0;
 	}" LWS_HAS_INTPTR_T)
 
-set(CMAKE_REQUIRED_FLAGS "-pthread")	
+set(CMAKE_REQUIRED_FLAGS "")	
 CHECK_C_SOURCE_COMPILES("#define _GNU_SOURCE 
 	#include <pthread.h> 
 	int main(void) { 
@@ -1233,7 +1233,7 @@ if ((CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX) AND NOT LWS_WITHOUT_TE
 	if (UNIX AND LWS_HAVE_PTHREAD_H)
 	# jeez clang understands -pthread but dies if he sees it at link time!
 	# http://stackoverflow.com/questions/2391194/what-is-gs-pthread-equiv-in-clang
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread" )
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
     endif()
 endif()
 
@@ -1242,7 +1242,7 @@ if ((CMAKE_C_COMPILER_ID MATCHES "Clang") OR (CMAKE_CXX_COMPILER_ID MATCHES "Cla
 	# otherwise osx blows a bunch of openssl deprecated api errors
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-deprecated-declarations" )
 	if (UNIX AND LWS_HAVE_PTHREAD_H)
-		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread" )
+		set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
 	endif()
 endif()
 
